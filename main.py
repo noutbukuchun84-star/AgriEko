@@ -8,11 +8,13 @@ app = Flask(__name__)
 UPLOAD_FOLDER = 'static/uploads'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
+# Vercel-da xatolik bermasligi uchun bazani /tmp papkasiga bog'laymiz
+DB_PATH = '/tmp/database.db'
+
 # MA'LUMOTLAR BAZASINI SOZLASH (SQLite)
 def init_db():
-    conn = sqlite3.connect('database.db')
+    conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
-    # E'lonlar jadvalini yaratish
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS elonlar (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -30,19 +32,15 @@ def init_db():
 # Sayt yurganda bazani yaratib oladi
 init_db()
 
-# 1. BOSH SAHIFANI OCHISH (Bazadan hamma e'lonlarni o'qib HTMLga yuboradi)
+# 1. BOSH SAHIFANI OCHISH
 @app.route('/')
 def home():
-    conn = sqlite3.connect('database.db')
-    conn.row_factory = sqlite3.Row  # Ma'lumotlarni qulay o'qish uchun
+    conn = sqlite3.connect(DB_PATH)
+    conn.row_factory = sqlite3.Row
     cursor = conn.cursor()
-    
-    # E'lonlarni eng yangisidan boshlab saralab olish
     cursor.execute('SELECT * FROM elonlar ORDER BY id DESC')
     barcha_elonlar = cursor.fetchall()
     conn.close()
-    
-    # E'lonlarni bosh sahifaga (index.html) uzatamiz
     return render_template('index.html', elonlar=barcha_elonlar)
 
 # 2. E'lon berish sahifasini ochish
@@ -69,13 +67,20 @@ def elon_yuborish():
         image_name = ""
         
         if file and file.filename != '':
+            # Vercel-da rasmlarni ham vaqtinchalik /tmp papkasiga yoki static ichiga yozishga urinib ko'ramiz
             if not os.path.exists(UPLOAD_FOLDER):
-                os.makedirs(UPLOAD_FOLDER)
-            file.save(os.path.join(app.config['UPLOAD_FOLDER'], file.filename))
-            image_name = file.filename
+                try:
+                    os.makedirs(UPLOAD_FOLDER)
+                except:
+                    pass
+            try:
+                file.save(os.path.join(app.config['UPLOAD_FOLDER'], file.filename))
+                image_name = file.filename
+            except:
+                image_name = "" # Agar rasm saqlashda server ruxsat bermasa xato bermay o'tib ketadi
 
         # MA'LUMOTLARNI BAZAGA YOZISH
-        conn = sqlite3.connect('database.db')
+        conn = sqlite3.connect(DB_PATH)
         cursor = conn.cursor()
         cursor.execute('''
             INSERT INTO elonlar (title, category, price, phone, description, image)
@@ -84,7 +89,6 @@ def elon_yuborish():
         conn.commit()
         conn.close()
 
-        print(f"Yangi e'lon bazaga saqlandi: {title}")
         return redirect('/')
 
 if __name__ == '__main__':
