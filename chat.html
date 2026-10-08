@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="uz" class="h-full bg-slate-100">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xabarlar va Chat - AgriEko</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://tailwindcss.com"></script>
+    <!-- FontAwesome ikonkalari -->
+    <link rel="stylesheet" href="https://cloudflare.com">
+</head>
+<body class="h-full font-sans antialiased text-slate-800 flex flex-col">
+
+    <!-- Yuqori menyu (Header) -->
+    <header class="bg-white border-b border-slate-200 px-4 py-3 flex items-center justify-between shrink-0">
+        <div class="flex items-center space-x-3">
+            <a href="index.html" class="text-slate-500 hover:text-green-600 transition">
+                <i class="fa-solid fa-arrow-left text-lg"></i>
+            </a>
+            <h1 class="text-lg font-bold text-slate-900">Xabarlar</h1>
+        </div>
+        <div class="text-sm font-medium text-green-600 bg-green-50 px-2.5 py-1 rounded-full">
+            AgriEko Chat
+        </div>
+    </header>
+
+    <!-- Asosiy Chat Konteyneri -->
+    <div class="flex-1 flex overflow-hidden max-w-6xl w-full mx-auto bg-white md:my-4 md:rounded-xl md:shadow-sm md:border md:border-slate-200">
+        
+        <!-- CHAP TOMON: Suhbatdoshlar ro'yxati (Katta ekranlarda ko'rinadi, telefonda yashirish mumkin) -->
+        <div class="w-full md:w-80 border-r border-slate-200 flex flex-col bg-slate-50 shrink-0 hidden md:flex">
+            <!-- Qidiruv paneli -->
+            <div class="p-3 border-b border-slate-200 bg-white">
+                <div class="relative">
+                    <input type="text" placeholder="Chatlarni qidirish..." 
+                        class="w-full pl-9 pr-4 py-1.5 bg-slate-100 border border-transparent rounded-lg text-sm focus:outline-none focus:bg-white focus:border-green-500 transition">
+                    <i class="fa-solid fa-magnifying-glass absolute left-3 top-2.5 text-slate-400 text-xs"></i>
+                </div>
+            </div>
+            
+            <!-- Suhbatdoshlar ro'yxati -->
+            <div class="flex-1 overflow-y-auto divide-y divide-slate-100">
+                <!-- 1-Suhbatdosh (Aktiv) -->
+                <div class="p-3 flex items-center space-x-3 bg-green-50/60 border-l-4 border-green-500 cursor-pointer">
+                    <div class="w-10 h-10 bg-green-600 rounded-full flex items-center justify-center text-white font-bold shrink-0">
+                        AA
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <div class="flex justify-between items-baseline">
+                            <h2 class="text-sm font-semibold text-slate-900 truncate">Asror Axmedov</h2>
+                            <span class="text-xxs text-slate-400 shrink-0">14:32</span>
+                        </div>
+                        <p class="text-xs text-slate-500 truncate mt-0.5">Olmalarni qachon yetkazib bera olasiz?</p>
+                    </div>
+                </div>
+
+                <!-- 2-Suhbatdosh -->
+                <div class="p-3 flex items-center space-x-3 hover:bg-slate-100 cursor-pointer transition">
+                    <div class="w-10 h-10 bg-amber-500 rounded-full flex items-center justify-center text-white font-bold shrink-0">
+                        OD
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <div class="flex justify-between items-baseline">
+                            <h2 class="text-sm font-medium text-slate-900 truncate">Olimjon Do'stov</h2>
+                            <span class="text-xxs text-slate-400 shrink-0">Kecha</span>
+                        </div>
+                        <p class="text-xs text-slate-400 truncate mt-0.5">Yaxshi, narxini kelishdik.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- O'NG TOMON: Jonli xabarlar oynasi (Asosiy oyna) -->
+        <div class="flex-1 flex flex-col h-full bg-white relative">
+            
+            <!-- Suhbatlashilayotgan odam haqida ma'lumot (Chat Header) -->
+            <div class="p-3 border-b border-slate-200 flex items-center justify-between bg-white shrink-0 shadow-sm">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-green-600 rounded-full flex items-center justify-center text-white font-bold">
+                        AA
+                    </div>
+                    <div>
+                        <h2 class="text-sm font-bold text-slate-900">Asror Axmedov (Sotuvchi)</h2>
+                        <p class="text-xs text-emerald-500 flex items-center">
+                            <span class="w-1.5 h-1.5 bg-emerald-500 rounded-full mr-1.5 animate-pulse"></span> tarmoqda
+                        </p>
+                    </div>
+                </div>
+                <!-- E'lon haqida qisqacha ma'lumot -->
+                <div class="text-right hidden sm:block">
+                    <span class="text-xs font-medium text-slate-500">E'lon:</span>
+                    <p class="text-xs font-bold text-slate-900">Sarhil qizil olma</p>
+                </div>
+            </div>
+
+            <!-- Xabarlar ko'rinadigan joy (O'rtasi) -->
+            <div class="flex-1 overflow-y-auto p-4 space-y-4 bg-slate-50/50">
+                
+                <!-- Kelgan xabar (Suhbatdoshdan) -->
+                <div class="flex items-end space-x-2 max-w-[85%]">
+                    <div class="bg-white text-slate-800 p-3 rounded-2xl rounded-bl-none shadow-sm text-sm border border-slate-100">
+                        <p>Assalomu alaykum! Olma e'loni bo'yicha yozayotgandim. Hozirda qancha hajmda bor?</p>
+                        <span class="block text-right text-[10px] text-slate-400 mt-1">14:30</span>
+                    </div>
+                </div>
+
+                <!-- Yuborilgan xabar (Sizdan) -->
+                <div class="flex items-end justify-end space-x-2 max-w-[85%] ml-auto">
+                    <div class="bg-green-600 text-white p-3 rounded-2xl rounded-br-none shadow-sm text-sm">
+                        <p>Va alaykum assalom. Hozirda omborda 2 tonna atrofida sarhil qizil olmalarimiz tayyor turibdi.</p>
+                        <span class="block text-right text-[10px] text-green-200 mt-1">14:31</span>
+                    </div>
+                </div>
+
+                <!-- Kelgan xabar (Suhbatdoshdan) -->
+                <div class="flex items-end space-x-2 max-w-[85%]">
+                    <div class="bg-white text-slate-800 p-3 rounded-2xl rounded-bl-none shadow-sm text-sm border border-slate-100">
+                        <p>Ajoyib! Viloyatlarga yetkazib berish xizmati ham bormi yoki o'zimiz borib olib ketishimiz kerakmi?</p>
+                        <span class="block text-right text-[10px] text-slate-400 mt-1">14:32</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Xabar yozish paneli (Pastki qism) -->
+            <div class="p-3 border-t border-slate-200 bg-white shrink-0">
+                <form class="flex items-center space-x-2" onsubmit="event.preventDefault();">
+                    <!-- Rasm yoki fayl biriktirish tugmasi -->
+                    <button type="button" class="w-10 h-10 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-lg transition shrink-0">
+                        <i class="fa-solid fa-paperclip text-lg"></i>
+                    </button>
+                    
+                    <!-- Matn kiritish maydoni -->
+                    <input type="text" placeholder="Xabaringizni yozing..." 
+                        class="flex-1 px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:bg-white focus:border-green-500 focus:ring-1 focus:ring-green-500 transition">
+                    
+                    <!-- Yuborish tugmasi -->
+                    <button type="submit" class="w-10 h-10 bg-green-600 text-white hover:bg-green-700 rounded-xl shadow-sm transition shrink-0 active:scale-95 flex items-center justify-center">
+                        <i class="fa-solid fa-paper-plane text-sm"></i>
+                    </button>
+                </form>
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+</html>
