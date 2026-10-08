@@ -1,0 +1,23 @@
+/* Telefonlar va kichik ekranlar uchun */
+@media (max-width: 768px) {
+  body {
+    padding: 10px;
+  }
+  
+  /* Barcha asosiy bloklar va konteynerlarni telefon kengligiga moslaydi */
+  .container, div, section {
+    max-width: 100% !important;
+    box-sizing: border-box;
+  }
+
+  /* Rasmlar ekrandan chiqib ketmaydi */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Yonma-yon turgan elementlarni ustma-ust qiladi */
+  .row, .flex-container {
+    flex-direction: column;
+  }
+}
