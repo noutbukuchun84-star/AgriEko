@@ -1,7 +1,8 @@
-from flask import Flask, render_template, request, redirect, url_path_as
+from flask import Flask, render_template, request, redirect, url_for
 import os
 
-app = Flask(__name__)
+# HTML fayllar templates papkasida emas, bosh papkada turgani uchun template_folder='.' deb ko'rsatamiz
+app = Flask(__name__, template_folder='.')
 
 # Yuklangan rasmlar saqlanadigan papka joyi
 UPLOAD_FOLDER = 'static/uploads'
@@ -26,7 +27,6 @@ def chat_page():
 @app.route('/elon-yuborish', methods=['POST'])
 def elon_yuborish():
     if request.method == 'POST':
-        # HTML formadan yuborilgan ma'lumotlarni tutib olish
         title = request.form.get('title')
         category = request.form.get('category')
         price = request.form.get('price')
@@ -37,20 +37,14 @@ def elon_yuborish():
         file = request.files.get('file-upload')
         
         if file and file.filename != '':
-            # Rasmni kompyuterga yoki server papkasiga saqlash
             if not os.path.exists(UPLOAD_FOLDER):
                 os.makedirs(UPLOAD_FOLDER)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], file.filename))
-            print(f"Rasm muvaffaqiyatli saqlandi: {file.filename}")
 
-        # Konsolda ma'lumotlar kelganini tekshirish (Terminalda ko'rinadi)
         print("--- YANGI E'LON KELDI ---")
         print(f"Nomi: {title}, Kategoriya: {category}, Narxi: {price}, Tel: {phone}")
-        print(f"Tavsif: {description}")
         print("-------------------------")
 
-        # E'lon muvaffaqiyatli ketgach, foydalanuvchini yana bosh sahifaga qaytarish
         return redirect('/')
 
-if __name__ == '__main__':
-    app.run(debug=True)
+if __name__ == '__main__
