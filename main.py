@@ -16,7 +16,7 @@ def init_db():
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS elonlar (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
-            title TEXT NOT EXISTS,
+            title TEXT,
             category TEXT,
             price TEXT,
             phone TEXT,
@@ -27,13 +27,23 @@ def init_db():
     conn.commit()
     conn.close()
 
-# Sayt birinchi marta yurganda bazani yaratib oladi
+# Sayt yurganda bazani yaratib oladi
 init_db()
 
-# 1. Bosh sahifani ochish
+# 1. BOSH SAHIFANI OCHISH (Bazadan hamma e'lonlarni o'qib HTMLga yuboradi)
 @app.route('/')
 def home():
-    return render_template('index.html')
+    conn = sqlite3.connect('database.db')
+    conn.row_factory = sqlite3.Row  # Ma'lumotlarni qulay o'qish uchun
+    cursor = conn.cursor()
+    
+    # E'lonlarni eng yangisidan boshlab saralab olish
+    cursor.execute('SELECT * FROM elonlar ORDER BY id DESC')
+    barcha_elonlar = cursor.fetchall()
+    conn.close()
+    
+    # E'lonlarni bosh sahifaga (index.html) uzatamiz
+    return render_template('index.html', elonlar=barcha_elonlar)
 
 # 2. E'lon berish sahifasini ochish
 @app.route('/elon.html')
@@ -55,7 +65,6 @@ def elon_yuborish():
         phone = request.form.get('phone')
         description = request.form.get('description')
         
-        # Rasm faylini qabul qilib olish
         file = request.files.get('file-upload')
         image_name = ""
         
