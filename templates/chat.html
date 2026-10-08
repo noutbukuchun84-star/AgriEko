@@ -1,150 +1,154 @@
 <!DOCTYPE html>
-<html lang="uz" class="h-full bg-slate-100">
+<html lang="uz" class="h-full bg-slate-50">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Xabarlar va Chat - AgriEko</title>
+    <title>Xabarlar va Jonli Chat - AgriEko</title>
     
     <!-- Tailwind CSS CDN -->
     <script src="https://tailwindcss.com"></script>
-    <!-- FontAwesome ikonkalari -->
+    <!-- FontAwesome Ikonkalari -->
     <link rel="stylesheet" href="https://cloudflare.com">
+    
+    <!-- Maxsus CSS effektlari (Gradients va Scrollbar uchun) -->
+    <style>
+        /* Chiroyli va ingichka scrollbar */
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+    </style>
 </head>
-<body class="h-full font-sans antialiased text-slate-800 flex flex-col">
+<body class="h-full font-sans antialiased text-slate-800 flex flex-col bg-slate-100/50">
 
-    <!-- Yuqori menyu (Header) -->
-    <header class="bg-white border-b border-slate-200 px-4 py-3 flex items-center justify-between shrink-0">
-        <div class="flex items-center space-x-3">
-            <a href="index.html" class="text-slate-500 hover:text-green-600 transition">
+    <!-- 1. Yuqori Navigatsiya Paneli (Premium Header) -->
+    <header class="bg-white border-b border-slate-200/80 backdrop-blur-md bg-white/90 sticky top-0 px-4 py-3.5 flex items-center justify-between shrink-0 z-50 shadow-sm">
+        <div class="flex items-center space-x-3.5">
+            <a href="index.html" class="w-9 h-9 flex items-center justify-center text-slate-500 hover:text-green-600 hover:bg-slate-100 rounded-full transition duration-200">
                 <i class="fa-solid fa-arrow-left text-lg"></i>
             </a>
-            <h1 class="text-lg font-bold text-slate-900">Xabarlar</h1>
+            <div>
+                <h1 class="text-base font-bold text-slate-900 tracking-tight flex items-center">
+                    <i class="fa-regular fa-comments mr-2 text-green-500"></i> Muloqot Markazi
+                </h1>
+            </div>
         </div>
-        <div class="text-sm font-medium text-green-600 bg-green-50 px-2.5 py-1 rounded-full">
-            AgriEko Chat
+        <div class="text-xs font-semibold text-green-700 bg-green-50 px-3 py-1.5 rounded-full border border-green-100 flex items-center shadow-sm">
+            <span class="w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse"></span> B2B Maydonchasi
         </div>
     </header>
 
-    <!-- Asosiy Chat Konteyneri -->
-    <div class="flex-1 flex overflow-hidden max-w-6xl w-full mx-auto bg-white md:my-4 md:rounded-xl md:shadow-sm md:border md:border-slate-200">
+    <!-- 2. Asosiy Chat Tuzilishi -->
+    <div class="flex-1 flex overflow-hidden max-w-6xl w-full mx-auto bg-white md:my-4 md:rounded-2xl md:shadow-lg md:border md:border-slate-200/60">
         
-        <!-- CHAP TOMON: Suhbatdoshlar ro'yxati (Katta ekranlarda ko'rinadi, telefonda yashirish mumkin) -->
-        <div class="w-full md:w-80 border-r border-slate-200 flex flex-col bg-slate-50 shrink-0 hidden md:flex">
-            <!-- Qidiruv paneli -->
-            <div class="p-3 border-b border-slate-200 bg-white">
+        <!-- CHAP UPANEL: Suhbatdoshlar Ro'yxati (Katta ekranda yonma-yon, telefonda ixcham) -->
+        <div class="w-full md:w-80 border-r border-slate-200 flex flex-col bg-slate-50/50 shrink-0 hidden md:flex">
+            <!-- Izlash qutisi -->
+            <div class="p-4 border-b border-slate-200/60 bg-white">
                 <div class="relative">
-                    <input type="text" placeholder="Chatlarni qidirish..." 
-                        class="w-full pl-9 pr-4 py-1.5 bg-slate-100 border border-transparent rounded-lg text-sm focus:outline-none focus:bg-white focus:border-green-500 transition">
-                    <i class="fa-solid fa-magnifying-glass absolute left-3 top-2.5 text-slate-400 text-xs"></i>
+                    <input type="text" placeholder="Suhbatdoshni qidirish..." 
+                        class="w-full pl-10 pr-4 py-2 bg-slate-100/80 border border-slate-200/40 rounded-xl text-sm focus:outline-none focus:bg-white focus:border-green-500 focus:ring-2 focus:ring-green-100 transition duration-200">
+                    <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3 text-slate-400 text-xs"></i>
                 </div>
             </div>
             
-            <!-- Suhbatdoshlar ro'yxati -->
-            <div class="flex-1 overflow-y-auto divide-y divide-slate-100">
-                <!-- 1-Suhbatdosh (Aktiv) -->
-                <div class="p-3 flex items-center space-x-3 bg-green-50/60 border-l-4 border-green-500 cursor-pointer">
-                    <div class="w-10 h-10 bg-green-600 rounded-full flex items-center justify-center text-white font-bold shrink-0">
+            <!-- Foydalanuvchilar Listi -->
+            <div class="flex-1 overflow-y-auto divide-y divide-slate-100 bg-white">
+                <!-- 1-Suhbatdosh (Tanlangan/Aktiv) -->
+                <div class="p-3.5 flex items-center space-x-3 bg-gradient-to-r from-green-50/70 to-transparent border-l-4 border-green-500 cursor-pointer transition">
+                    <div class="w-11 h-11 bg-gradient-to-tr from-green-600 to-emerald-500 rounded-full flex items-center justify-center text-white font-bold shrink-0 shadow-md shadow-green-100">
                         AA
                     </div>
                     <div class="flex-1 min-w-0">
                         <div class="flex justify-between items-baseline">
-                            <h2 class="text-sm font-semibold text-slate-900 truncate">Asror Axmedov</h2>
-                            <span class="text-xxs text-slate-400 shrink-0">14:32</span>
+                            <h2 class="text-sm font-bold text-slate-900 truncate">Asror Axmedov</h2>
+                            <span class="text-[10px] font-medium text-green-600 shrink-0 bg-green-50 px-1.5 py-0.5 rounded">14:32</span>
                         </div>
-                        <p class="text-xs text-slate-500 truncate mt-0.5">Olmalarni qachon yetkazib bera olasiz?</p>
+                        <p class="text-xs text-slate-600 truncate mt-1 font-medium">Olmalarni qachon yetkazib bera olasiz?</p>
                     </div>
                 </div>
 
                 <!-- 2-Suhbatdosh -->
-                <div class="p-3 flex items-center space-x-3 hover:bg-slate-100 cursor-pointer transition">
-                    <div class="w-10 h-10 bg-amber-500 rounded-full flex items-center justify-center text-white font-bold shrink-0">
+                <div class="p-3.5 flex items-center space-x-3 hover:bg-slate-50/80 cursor-pointer transition duration-150">
+                    <div class="w-11 h-11 bg-gradient-to-tr from-amber-500 to-orange-400 rounded-full flex items-center justify-center text-white font-bold shrink-0 shadow-md shadow-orange-50">
                         OD
                     </div>
                     <div class="flex-1 min-w-0">
                         <div class="flex justify-between items-baseline">
-                            <h2 class="text-sm font-medium text-slate-900 truncate">Olimjon Do'stov</h2>
-                            <span class="text-xxs text-slate-400 shrink-0">Kecha</span>
+                            <h2 class="text-sm font-medium text-slate-800 truncate">Olimjon Do'stov</h2>
+                            <span class="text-[10px] text-slate-400 shrink-0">Kecha</span>
                         </div>
-                        <p class="text-xs text-slate-400 truncate mt-0.5">Yaxshi, narxini kelishdik.</p>
+                        <p class="text-xs text-slate-400 truncate mt-1">Yaxshi, narxini kelishdik.</p>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- O'NG TOMON: Jonli xabarlar oynasi (Asosiy oyna) -->
-        <div class="flex-1 flex flex-col h-full bg-white relative">
+        <!-- O'NG UPANEL: Jonli Xabarlar Oynasi -->
+        <div class="flex-1 flex flex-col h-full bg-slate-50/30 relative">
             
-            <!-- Suhbatlashilayotgan odam haqida ma'lumot (Chat Header) -->
-            <div class="p-3 border-b border-slate-200 flex items-center justify-between bg-white shrink-0 shadow-sm">
+            <!-- Chat Oynasi Sarlavhasi -->
+            <div class="p-4 border-b border-slate-200/80 flex items-center justify-between bg-white shrink-0 shadow-sm/50">
                 <div class="flex items-center space-x-3">
-                    <div class="w-10 h-10 bg-green-600 rounded-full flex items-center justify-center text-white font-bold">
+                    <div class="w-10 h-10 bg-gradient-to-tr from-green-600 to-emerald-500 rounded-full flex items-center justify-center text-white font-bold shadow-md shadow-green-100">
                         AA
                     </div>
                     <div>
                         <h2 class="text-sm font-bold text-slate-900">Asror Axmedov (Sotuvchi)</h2>
-                        <p class="text-xs text-emerald-500 flex items-center">
-                            <span class="w-1.5 h-1.5 bg-emerald-500 rounded-full mr-1.5 animate-pulse"></span> tarmoqda
+                        <p class="text-[11px] font-medium text-emerald-500 flex items-center mt-0.5">
+                            <span class="w-1.5 h-1.5 bg-emerald-500 rounded-full mr-1.5 animate-pulse"></span> onlayn
                         </p>
                     </div>
                 </div>
-                <!-- E'lon haqida qisqacha ma'lumot -->
-                <div class="text-right hidden sm:block">
-                    <span class="text-xs font-medium text-slate-500">E'lon:</span>
-                    <p class="text-xs font-bold text-slate-900">Sarhil qizil olma</p>
+                <!-- Mahsulot mini-kartasi -->
+                <div class="text-right hidden sm:block bg-slate-50 px-3 py-1.5 rounded-xl border border-slate-100">
+                    <span class="text-[10px] font-semibold text-slate-400 block uppercase tracking-wider">Mavzu / Mahsulot</span>
+                    <p class="text-xs font-bold text-green-700">Sarhil qizil olma</p>
                 </div>
             </div>
 
-            <!-- Xabarlar ko'rinadigan joy (O'rtasi) -->
-            <div class="flex-1 overflow-y-auto p-4 space-y-4 bg-slate-50/50">
+            <!-- Xabarlar Oqimi (O'rtasi - Telegram uslubida) -->
+            <div class="flex-1 overflow-y-auto p-4 space-y-4 bg-gradient-to-b from-slate-50/50 to-slate-100/30">
                 
-                <!-- Kelgan xabar (Suhbatdoshdan) -->
-                <div class="flex items-end space-x-2 max-w-[85%]">
-                    <div class="bg-white text-slate-800 p-3 rounded-2xl rounded-bl-none shadow-sm text-sm border border-slate-100">
-                        <p>Assalomu alaykum! Olma e'loni bo'yicha yozayotgandim. Hozirda qancha hajmda bor?</p>
-                        <span class="block text-right text-[10px] text-slate-400 mt-1">14:30</span>
+                <!-- Kelgan xabar -->
+                <div class="flex items-end space-x-2 max-w-[80%]">
+                    <div class="bg-white text-slate-800 p-3.5 rounded-2xl rounded-bl-none shadow-sm text-sm border border-slate-200/40 relative group hover:shadow-md transition">
+                        <p class="leading-relaxed">Assalomu alaykum! Olma e'loni bo'yicha yozayotgandim. Hozirda qancha hajmda bor?</p>
+                        <span class="block text-right text-[9px] text-slate-400 font-medium mt-1.5">14:30</span>
                     </div>
                 </div>
 
-                <!-- Yuborilgan xabar (Sizdan) -->
-                <div class="flex items-end justify-end space-x-2 max-w-[85%] ml-auto">
-                    <div class="bg-green-600 text-white p-3 rounded-2xl rounded-br-none shadow-sm text-sm">
-                        <p>Va alaykum assalom. Hozirda omborda 2 tonna atrofida sarhil qizil olmalarimiz tayyor turibdi.</p>
-                        <span class="block text-right text-[10px] text-green-200 mt-1">14:31</span>
+                <!-- Yuborilgan xabar -->
+                <div class="flex items-end justify-end space-x-2 max-w-[80%] ml-auto">
+                    <div class="bg-gradient-to-br from-green-600 to-emerald-600 text-white p-3.5 rounded-2xl rounded-br-none shadow-md shadow-green-100 text-sm hover:shadow-lg transition">
+                        <p class="leading-relaxed">Va alaykum assalom. Hozirda omborda 2 tonna atrofida sarhil qizil olmalarimiz tayyor turibdi.</p>
+                        <span class="block text-right text-[9px] text-green-200/80 font-medium mt-1.5">14:31</span>
                     </div>
                 </div>
 
-                <!-- Kelgan xabar (Suhbatdoshdan) -->
-                <div class="flex items-end space-x-2 max-w-[85%]">
-                    <div class="bg-white text-slate-800 p-3 rounded-2xl rounded-bl-none shadow-sm text-sm border border-slate-100">
-                        <p>Ajoyib! Viloyatlarga yetkazib berish xizmati ham bormi yoki o'zimiz borib olib ketishimiz kerakmi?</p>
-                        <span class="block text-right text-[10px] text-slate-400 mt-1">14:32</span>
+                <!-- Kelgan xabar -->
+                <div class="flex items-end space-x-2 max-w-[80%]">
+                    <div class="bg-white text-slate-800 p-3.5 rounded-2xl rounded-bl-none shadow-sm text-sm border border-slate-200/40 hover:shadow-md transition">
+                        <p class="leading-relaxed">Ajoyib! Viloyatlarga yetkazib berish xizmati ham bormi yoki o'zimiz borib olib ketishimiz kerakmi?</p>
+                        <span class="block text-right text-[9px] text-slate-400 font-medium mt-1.5">14:32</span>
                     </div>
                 </div>
 
             </div>
 
-            <!-- Xabar yozish paneli (Pastki qism) -->
-            <div class="p-3 border-t border-slate-200 bg-white shrink-0">
-                <form class="flex items-center space-x-2" onsubmit="event.preventDefault();">
-                    <!-- Rasm yoki fayl biriktirish tugmasi -->
-                    <button type="button" class="w-10 h-10 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-lg transition shrink-0">
-                        <i class="fa-solid fa-paperclip text-lg"></i>
+            <!-- 3. Xabar Kiritish Paneli (Modern Input) -->
+            <div class="p-4 border-t border-slate-200 bg-white shrink-0">
+                <form class="flex items-center space-x-3" onsubmit="event.preventDefault();">
+                    <!-- Fayl biriktirish (Klip) -->
+                    <button type="button" class="w-10 h-10 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-xl transition duration-200 shrink-0 flex items-center justify-center border border-slate-200/60">
+                        <i class="fa-solid fa-paperclip text-base"></i>
                     </button>
                     
-                    <!-- Matn kiritish maydoni -->
-                    <input type="text" placeholder="Xabaringizni yozing..." 
-                        class="flex-1 px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:bg-white focus:border-green-500 focus:ring-1 focus:ring-green-500 transition">
-                    
-                    <!-- Yuborish tugmasi -->
-                    <button type="submit" class="w-10 h-10 bg-green-600 text-white hover:bg-green-700 rounded-xl shadow-sm transition shrink-0 active:scale-95 flex items-center justify-center">
-                        <i class="fa-solid fa-paper-plane text-sm"></i>
-                    </button>
-                </form>
-            </div>
-
-        </div>
-
-    </div>
-
-</body>
-</html>
+                    <!-- Input maydoni -->
+                    <div class="flex-1 relative">
+                        <input type="text" placeholder="Xabaringizni yozing..." 
+                            class="w-full pl-4 pr-10 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:bg-white focus:border-green-500 focus:ring-4 focus:ring-green-500/10 transition duration-200">
+                        <!-- Smaylik belgisi -->
+                        <button type="button" class="absolute right-3 top-3 text-slate-400 hover:text-slate-600 transition">
+                            <i class="fa-regular fa-face-smile text-base"></i>
+                        </button>
