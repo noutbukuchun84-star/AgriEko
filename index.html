@@ -55,12 +55,23 @@
 </head>
 <body class="h-full font-sans text-slate-800 antialiased flex flex-col min-h-screen bg-slate-50">
 
-    <!-- MANA SHU YERGA (BODY ICHIGA) QO'SHASIZ 👇 -->
-    <div class="p-4 bg-white shadow-sm flex justify-between items-center">
+  <!-- TO'G'RILANGAN VA JONLI YONMA-YON TUGMALAR BLOKI 👇 -->
+    <div class="p-4 bg-white shadow-sm flex justify-between items-center w-full">
+        <!-- Sayt logotipi yoki nomi -->
         <span class="font-bold text-lg text-green-600">AgriEko</span>
-        <a href="elon.html" class="bg-green-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-green-700 transition">
-            + E'lon berish
-        </a>
+        
+        <!-- Tugmalar turadigan qism (Space-x-3 tugmalarni chiroyli ajratib turadi) -->
+        <div class="flex items-center space-x-3">
+            <!-- Xabarlar (Chat) tugmasi -->
+            <a href="chat.html" class="bg-slate-100 text-slate-700 px-4 py-2 rounded-lg text-sm font-medium hover:bg-slate-200 transition flex items-center">
+                <i class="fa-regular fa-comment-dots mr-2 text-green-600"></i> Xabarlar
+            </a>
+            
+            <!-- E'lon berish tugmasi -->
+            <a href="elon.html" class="bg-green-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-green-700 transition flex items-center">
+                <i class="fa-solid fa-plus mr-1.5"></i> E'lon berish
+            </a>
+        </div>
     </div>
 
     <header class="sticky top-0 z-30 glass-header text-white shadow-md">
