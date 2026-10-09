@@ -11,7 +11,59 @@
     <link rel="stylesheet" href="https://cloudflare.com">
 </head>
 <body class="h-full font-sans antialiased text-slate-800">
+     <main class="page">
+  <h1>Yangi e'lon joylashtirish</h1>
+  <p class="sub">Sotadigan mahsulotingiz haqida ma'lumotlarni kiriting.</p>
 
+  <form class="card" id="elonForm">
+    <label class="field">
+      <span>Mahsulot yoki e'lon nomi</span>
+      <input type="text" placeholder="Masalan: Sarhil qizil olma" required>
+    </label>
+
+    <label class="field">
+      <span>Kategoriya</span>
+      <select required>
+        <option value="">Kategoriyani tanlang</option>
+      </select>
+    </label>
+
+    <label class="field">
+      <span>Narxi (so'mda)</span>
+      <div class="input-suffix">
+        <input type="number" placeholder="0" min="0" required>
+        <em>UZS</em>
+      </div>
+    </label>
+
+    <label class="field">
+      <span>Sotuvchi telefon raqami</span>
+      <div class="input-prefix">
+        <em>+998</em>
+        <input type="tel" placeholder="90 123 45 67" required>
+      </div>
+    </label>
+
+    <div class="field">
+      <span>Mahsulot rasmi</span>
+      <label class="drop">
+        <input type="file" accept="image/png,image/jpeg" hidden>
+        <strong>Rasm yuklash</strong>
+        <small>yoki shu yerga tashlang</small>
+        <small>PNG, JPG, JPEG (maksimal 5MB)</small>
+      </label>
+    </div>
+
+    <label class="field">
+      <span>Mahsulot haqida qo'shimcha ma'lumot</span>
+      <textarea rows="4" placeholder="Mahsulot holati, hajmi yoki yetkazib berish shartlari"></textarea>
+    </label>
+
+    <button type="submit" class="submit">E'lonni joylashtirish</button>
+  </form>
+
+  <footer>© 2026 AgriEko. Barcha huquqlar himoyalangan.</footer>
+     </main>
     <div class="max-w-md mx-auto min-h-screen px-4 py-6 flex flex-col justify-between md:max-w-2xl">
         
         <!-- Yuqori qism (Header) -->
